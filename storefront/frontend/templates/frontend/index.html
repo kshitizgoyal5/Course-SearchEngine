@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Course Recommender</title>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}"
+    />
+  </head>
+  <body>
+    <div id="main">
+      <div id="app"></div>
+    </div>
+
+    <script src="{% static "frontend/main.js" %}"></script>
+  </body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>Search Engine</title>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+</style>
+</head>
+<body>
+<h1>NLP Based Search Engine</h1>
+<hr>
+<div class="example">
+  <input type="text" placeholder="Search Something.." name="search" id="search">
+  <button id = "btnSubmit"><i class="fa fa-search"></i></button>
+</div>
+<br>
+<hr>
+<div id="results" style = "background-color:#EBEBEB; text-align: center; padding-top: 5px"><h3>Search Something ...</h3><br></div>
+
+</body>
+<script>
+	$(document).ready(function () {
+		$("#btnSubmit").on('click',(function(event) {
+			var getdata =  $("#search").val();
+			
+			$.ajax({
+				url: "http://127.0.0.1:8000/playground/home/",
+				type: "GET",
+				data: getdata,
+				contentType: false,
+				cache: false,
+				processData:false,
+				beforeSend: function()
+				{
+					$("#results").html("<div><h4>Fetching Results</h4><br><img src='static/images/loading.gif' width = 10%></img></div>");
+				},
+				success: function(data)
+				{
+					$("#results").html(data);
+          var header = "<table id=\"customers\">\n  <tr>\n    <th>course_id</th>\n    <th>course_title</th>\n    <th>url</th>\n\t<th>is_paid</th>\n\t<th>price</th>\n\t<th>num_subscribers</th>\n\t<th>num_reviews</th>\n\t<th>num_lectures</th>\n\t<th>level</th>\n\t<th>content_duration</th>\n</tr>"
+          var footer = "</table>";
+          var body = header;
+          
+          for(var i=0; i<data.length; i++){
+            body += "<tr>"
+            for(let attri in data[i]){
+              body += "<td>";
+              body += data[i][attri]
+              body += "</td>";
+            }
+            body += "</tr>";
+          }
+          body += footer
+          document.getElementById("results").innerHTML = body;
+				},
+				error: function()
+				{
+					console.log("failed to send the data");
+				}
+			});
+		}));
+	});
+</script>
+</html> -->
+
