@@ -24,10 +24,30 @@ const row = (x, i, header) =>
     )}
   </TableRow>;
 
+function dynamicSort(property, asc) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        if(asc) sortOrder = 1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        if(asc) result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
 export default ({ data, header }) =>{
+    const [Data, setData] = React.useState({ Data: data });
     if(data.length > 0){
         return (<TableContainer component={Paper} style={{ maxHeight: 700}}>
-            <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table" onClick={(row, col) => {
+                    data.sort(dynamicSort(header[row.target.cellIndex].prop, header[row.target.cellIndex].asc))
+                    header[row.target.cellIndex].asc = !header[row.target.cellIndex].asc
+                    setData({
+                        Data: data
+                    });
+                }}>
             <TableHead>
                 <TableRow>
                 {header.map((x, i) =>

@@ -28,7 +28,7 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchName: "python",
+      searchName: "",
       data: []
     }
     this.handleChange = this.handleChange.bind(this);
@@ -46,7 +46,7 @@ export default class HomePage extends Component {
       headers: {'Content-Type': 'application/json'}
       
     };
-    fetch('/playground/get-courses/'+this.state.searchName, requestOptions).then(
+    fetch('/api/get-courses/'+this.state.searchName, requestOptions).then(
       (response) => response.json()
     ).then((data) => {
       this.setState({
@@ -94,46 +94,49 @@ export default class HomePage extends Component {
               name: "Course Title",
               prop: "course_title",
               ref: true,
+              asc: false,
             },
             {
               name: "Price ($)",
               prop: "price",
               ref: false,
+              asc: false,
             },
             {
               name: "Subscribers",
               prop: "num_subscribers",
               ref: false,
+              asc: false,
             },
             {
               name: "Reviews",
               prop: "num_reviews",
               ref: false,
+              asc: false,
             },
             {
               name: "Total Lectures",
               prop: "num_lectures",
               ref: false,
+              asc: false,
             },
             {
               name: "Level",
               prop: "level",
               ref: false,
+              asc: false,
             },
             {
               name: "Course Duration (in hours)",
               prop: "content_duration",
               ref: false,
-            },
-            {
-              name: "Published On",
-              prop: "published_timestamp",
-              ref: false,
+              asc: false,
             },
             {
               name: "Subject",
               prop: "subject",
               ref: false,
+              asc: false,
             }
           ]}
         />
